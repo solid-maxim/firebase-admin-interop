@@ -737,6 +737,8 @@ abstract class FieldValues {
   /// If the field being modified is not already an array it will be overwritten
   /// with an empty array.
   external FieldValue arrayRemove(List elements);
+
+  external FieldValue increment(int value);
 }
 
 @JS()

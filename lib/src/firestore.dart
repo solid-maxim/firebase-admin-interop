@@ -1234,6 +1234,20 @@ js.SetOptions _getNativeSetOptions(bool merge) {
   return new js.SetOptions(merge: merge);
 }
 
+class _FieldValueIncrement implements FieldValue {
+  _FieldValueIncrement(this.value);
+
+  final int value;
+  
+  @override
+  dynamic _jsify() {
+    return js.admin.firestore.FieldValue.increment(value);
+  }
+
+  @override
+  String toString() => 'FieldValue.increment($value)';
+}
+
 class _FieldValueDelete implements FieldValue {
   @override
   dynamic _jsify() {
@@ -1332,6 +1346,8 @@ class FieldValues {
   /// If the field being modified is not already an array it will be overwritten
   /// with an empty array.
   FieldValue arrayRemove(List elements) => _FieldValueArrayRemove(elements);
+
+  FieldValue increment(int value) => _FieldValueIncrement(value);
 
   FieldValues._();
 
